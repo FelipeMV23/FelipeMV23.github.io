@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialidades</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="body">
+    {% include 'navegacion/navbar.html' %}
+    <div class="contenedor_maestro">
+        <div class="Contenedor">
+            <h1 class="titulo">Psicología</h1>
+            <div class="contenedor_horas">
+                <p class="parrafo">Lista de especialistas del área de Psicología</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+            </div>
+            <a href="{% url 'toma_de_hora'%}" class="btnn">Tomar hora</a>
+        </div>
+        <div class="Contenedor">
+            <h1 class="titulo">Psiquiatria</h1>
+            <div class="contenedor_horas">
+                <p class="parrafo">Lista de especialistas del área de Psicología</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+                <p class="parrafo"> Juan Perez/aten/lunes-vier/9:00am - 18:00pm</p>
+            </div>
+            <a href="{% url 'toma_de_hora'%}" class="btnn">Tomar hora</a>
+        </div>
+    </div>
+    <div class="imagen">
+        <img src="{% static 'images/Psicologia.jpeg' %}" alt="home" class="imagen_psicologico">
+    </div>
+    <div class="contenedor_text_psicologia">
+        <h1 class="Psicologia_text">¿En que te podemos ayudar con nuestro servicio de Psicologia?</h1>
+    </div>
+    <div class="contenedor_text_psicologia2">
+        <h3 class="Psicologia_text2">
+            En nuestro centro médico psicológico, estamos aquí para ayudarte a enfrentar una amplia variedad de
+            desafíos. Nuestros servicios están diseñados para ayudarte a:
+        </h3>
+    </div>
+    <div class="contenedor_text_psicologia3">
+        <h3 class="Psicologia_text3">
+            * Manejar el estrés y la ansiedad
+        </h3>
+    </div>
+    <div class="contenedor_text_psicologia4">
+        <h3 class="Psicologia_text4">
+            * Superar la depresión
+        </h3>
+    </div>
+    <div class="contenedor_text_psicologia5">
+        <h3 class="Psicologia_text5">
+            * Mejorar relaciones personales
+        </h3>
+    </div>
+    <div class="contenedor_text_psicologia6">
+        <h3 class="Psicologia_text6">
+            * Aumentar la autoestima y autoconfianza
+        </h3>
+    </div>
+    <div class="contenedor_text_psicologia7">
+        <h3 class="Psicologia_text7">
+            * Abordar traumas y experiencias difíciles
+        </h3>
+    </div>
+
+    <footer>
+        {% include 'navegacion/footer.html' %}
+    </footer>
+</body>
+
+</html>

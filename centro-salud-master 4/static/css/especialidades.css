@@ -1,0 +1,148 @@
+.body{
+    background: rgb(230, 0, 0);
+}
+.contenedor_maestro{
+    text-align: center;
+    margin-top: 30px;
+}
+.Contenedor{
+    border: 4px solid rgb(134, 130, 130);
+    width: 400px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 10px;
+    height: 370px;
+}
+.titulo{
+    color: white;
+}
+.parrafo{
+    color: rgb(0, 0, 0);
+}
+
+.btnn{
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0d0d0d;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btnn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.btnn:active {
+    background-color: #003f7f;
+    transform: scale(0.98);
+}
+
+.btnn:focus {
+    outline: 2px solid #0056b3;
+    outline-offset: 4px;
+}
+.imagen{
+    text-align: center;
+    margin-top: 30px;
+}
+.imagen_psicologico{
+    border: 3px solid white;
+}
+.Psicologia_text{
+    color: white;
+    text-align: center;
+    position: relative;
+    bottom: 630px;
+    font-family: "Edu AU VIC WA NT Pre", cursive;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+.contenedor_text_psicologia2 {
+    width: 100%;
+}
+
+.Psicologia_text2 {
+    color: white;
+    position: absolute;
+    left: 50%; 
+    width: 890px; 
+    top: 660px;
+    transform: translateX(-65%); 
+    display: inline-block; 
+}
+
+.contenedor_text_psicologia3 {
+    width: 100%;
+}
+
+.Psicologia_text3 {
+    color: white;
+    position: absolute;
+    left: 50%; 
+    width: 890px; 
+    top: 800px;
+    transform: translateX(-65%); 
+    display: inline-block; 
+}
+
+.contenedor_text_psicologia4 {
+    width: 100%;
+}
+
+.Psicologia_text4 {
+    color: white;
+    position: absolute;
+    left: 50%; 
+    width: 890px; 
+    top: 850px;
+    transform: translateX(-65%); 
+    display: inline-block; 
+}
+.contenedor_text_psicologia5 {
+    width: 100%;
+}
+
+.Psicologia_text5 {
+    color: white;
+    position: absolute;
+    left: 50%; 
+    width: 890px; 
+    top: 900px;
+    transform: translateX(-65%); 
+    display: inline-block; 
+}
+.contenedor_text_psicologia6 {
+    width: 100%;
+}
+
+.Psicologia_text6 {
+    color: white;
+    position: absolute;
+    left: 50%; 
+    width: 890px; 
+    top: 950px;
+    transform: translateX(-65%); 
+    display: inline-block; 
+}
+.contenedor_text_psicologia7 {
+    width: 100%;
+}
+
+.Psicologia_text7 {
+    color: white;
+    position: absolute;
+    left: 50%; 
+    width: 890px; 
+    top: 1000px;
+    transform: translateX(-65%); 
+    display: inline-block; 
+}
+
+

@@ -1,0 +1,105 @@
+/* perfil.css */
+
+/* Centrar el contenido */
+
+.titulo-perfil{
+    color: #D91424;
+}
+
+.titulo-campo{
+    color: #0056b3;
+    text-align: left;
+}
+.perfil-container {
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+
+/* Tabla con más espacio y centrada */
+.table-vertical th, .table-vertical td {
+    padding: 12px 20px;
+    text-align: left;
+}
+
+.table-vertical th {
+    text-align: right;
+    font-weight: bold;
+    width: 150px;
+}
+
+/* Campos de edición ocultos por defecto */
+.edit-field {
+    display: none;
+}
+
+/* Estilos para los botones de edición */
+/* Estilos para el botón de editar */
+.button-edit {
+    background-color: #3767a6;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-sizing: content-box;
+    font-size: 16px;
+    margin-right: 10px; /* Espacio entre los botones */
+    display: inline-block;
+}
+
+/* Hover para el botón de editar */
+.button-edit:hover {
+    background-color: #D91424;
+    text-decoration: none;
+}
+
+/* Estilos para el botón de guardar todo */
+.button-save {
+    background-color: #2b973a;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: 16px;
+    display: inline-block; /* Alineación en línea con el botón de editar */
+}
+
+/* Hover para el botón de guardar todo */
+.button-save:hover {
+    background-color: #3eca51;
+    color: white;
+}
+
+
+/* Estilos adicionales */
+.user-info {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .perfil-container {
+        padding: 20px;
+    }
+
+    .table-vertical th, .table-vertical td {
+        display: block;
+        text-align: left;
+        width: 100%;
+        padding: 8px 0;
+    }
+
+    .table-vertical th {
+        font-weight: bold;
+    }
+
+    .btn-edit {
+        display: inline-block;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}

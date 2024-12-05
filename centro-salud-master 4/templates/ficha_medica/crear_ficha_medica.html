@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Ficha Médica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        {% include 'navegacion/navbar.html' %}
+    </header>
+
+    <div class="container mt-4">
+        <h2>Crear Ficha Médica</h2>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearFichaModal" data-hora_id="{{ hora.id }}">
+            Crear Ficha Médica
+        </button>
+
+        <!-- Modal de creación de ficha médica -->
+        <div class="modal fade" id="crearFichaModal" tabindex="-1" aria-labelledby="crearFichaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="crearFichaLabel">Crear Ficha Médica</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="fichaMedicaForm" action="{% url 'crear_ficha_medica' hora.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="hora_id" value="{{ hora.id }}">
+
+                            <div class="mb-3">
+                                <label for="paciente" class="form-label">Paciente</label>
+                                <input type="text" class="form-control" id="paciente" value="{{ hora.patient_first_name }} {{ hora.patient_last_name }}" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="fecha" class="form-label">Fecha</label>
+                                <input type="date" class="form-control" id="fecha" value="{{ hora.date|date:'Y-m-d' }}" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="especialista" class="form-label">Especialista</label>
+                                <input type="text" class="form-control" id="especialista" value="{{ hora.specialist_first_name }} {{ hora.specialist_last_name }}" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="sintomas" class="form-label">Síntomas</label>
+                                <textarea class="form-control" id="sintomas" name="sintomas" rows="3" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="diagnostico" class="form-label">Diagnóstico</label>
+                                <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mt-3">Guardar Ficha Médica</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>ID de Hora: {{ hora.id }}</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Manejamos la apertura de la modal
+            $('#crearFichaModal').on('show.bs.modal', function(event) {
+                const button = $(event.relatedTarget);
+                const horaId = button.data('hora_id');
+                $('#horaIdInput').val(horaId);
+                $('#fichaMedicaForm').attr('action', `/ficha_medica/crear/${horaId}/`);
+            });
+
+            // Enviamos el formulario mediante AJAX
+            $('#fichaMedicaForm').on('submit', function(e) {
+                e.preventDefault();
+                const formData = $(this).serialize();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    success: function(data) {
+                        if (data.success) {
+                            alert('Ficha médica guardada exitosamente.');
+                            $('#crearFichaModal').modal('hide');
+                            $('#fichaMedicaForm')[0].reset();
+                        } else {
+                            alert('Error: ' + JSON.stringify(data.error));
+                        }
+                    },
+                    error: function() {
+                        alert('Ocurrió un error al guardar la ficha médica. Intenta de nuevo más tarde.');
+                    }
+                });
+            });
+        });
+    </script>
+
+<footer>
+    {% include 'navegacion/footer.html' %}
+</footer>
+</body>
+</html>

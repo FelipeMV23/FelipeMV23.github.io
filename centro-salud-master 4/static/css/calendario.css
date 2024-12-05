@@ -1,0 +1,13 @@
+#calendar {
+    max-width: 900px; /* Ajusta el ancho máximo */
+    margin: 0 auto;   /* Centra el calendario */
+    padding: 20px;
+}
+
+.fc-toolbar h2 {
+    font-size: 1.5rem; /* Cambia el tamaño del título del mes */
+}
+
+.fc-day-grid-event {
+    font-size: 0.8rem; /* Cambia el tamaño de los eventos */
+}

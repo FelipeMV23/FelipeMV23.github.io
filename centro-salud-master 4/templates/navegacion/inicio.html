@@ -1,0 +1,39 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<body>
+    <header>
+        {% include 'navegacion/navbar.html' %}
+    </header>
+    
+    <main>
+        <article class="container-relative">
+            <img src="{% static 'images/inicio.png' %}" alt="home" class="imagen-principal">
+            <div class="text-overlay">
+                <h1 class="titulo-inicio" style="color:white">Tu salud mental es una prioridad</h1>
+                <p>Toma una hora con nuestros especialistas haciendo click en el botón</p> 
+                <a href="{% url 'toma_de_hora' %}" class="button">Toma de hora</a> <!-- Enlace estilizado como botón -->
+            </div>
+        </article>
+        <section class="opciones">
+            <div class="container">
+                <h4 class="titulo-opciones">Estas son las opciones que tenemos para ti</h4>
+                <div class="row elementos">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'toma_de_hora' %}" class="col-12 col-md-4 servicios"> <!-- Clases para responsividad -->
+                        <h5><i class="fas fa-calendar-alt"></i> Agendar una hora</h5>
+                        <p>Solicita una hora con nuestros especialistas.</p>
+                    </a>
+                    {% endif %}
+        
+                    <a href="{% url 'especialidades' %}" class="col-12 col-md-4 servicios"> <!-- Clases para responsividad -->
+                        <h5><i class="fas fa-list-alt"></i> Lista de especialidades</h5>
+                        <p>Conoce las especialidades que tenemos disponibles.</p>
+                    <a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        {% include 'navegacion/footer.html' %}
+    </footer>
+</body>

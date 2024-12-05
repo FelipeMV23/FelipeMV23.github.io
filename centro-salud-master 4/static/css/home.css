@@ -1,0 +1,145 @@
+/* Estilos para el contenedor de la imagen y el texto */
+.container-relative {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Ajustamos la altura a un valor fijo, como estaba originalmente */
+    margin: 0 auto;
+    overflow: hidden; /* Asegura que el contenido que sobresalga sea oculto */
+}
+
+/* La imagen ocupará todo el contenedor y mantendrá su proporción */
+.imagen-principal {
+    position: absolute; /* Fija la imagen para que no se mueva */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la imagen ajustada y cubriendo el área */
+}
+
+/* Estilos para el texto encima de la imagen */
+.text-overlay {
+    position: absolute; /* El texto se posiciona sobre la imagen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el texto tanto vertical como horizontalmente */
+    color: #ffffff;
+    text-align: center;
+    width: 90%; /* Ajuste de ancho */
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 10; /* Asegura que el texto esté por encima de la imagen */
+}
+
+.text-overlay h1 {
+    font-size: 2.5rem; /* Tamaño inicial */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.text-overlay p {
+    font-size: 1.2rem; /* Tamaño inicial */
+    margin-bottom: 20px;
+}
+
+/* Estilos para el botón */
+.text-overlay a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d91424;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.text-overlay a.button:hover {
+    background-color: #3767a6; /* Cambia el color al pasar el ratón */
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .text-overlay h1 {
+        font-size: 2rem; /* Ajustar tamaño en pantallas medianas */
+    }
+
+    .text-overlay p {
+        font-size: 1.1rem; /* Ajustar tamaño en pantallas medianas */
+    }
+
+    .text-overlay a.button {
+        font-size: 1rem; /* Ajustar tamaño en pantallas medianas */
+    }
+
+    .text-overlay {
+        padding: 15px; /* Ajuste de padding */
+    }
+
+    .container-relative {
+        height: 400px; /* Reducimos la altura en pantallas medianas */
+    }
+}
+
+@media (max-width: 480px) {
+    .text-overlay h1 {
+        font-size: 1.7rem; /* Tamaño reducido en pantallas pequeñas */
+    }
+
+    .text-overlay p {
+        font-size: 1rem; /* Tamaño reducido en pantallas pequeñas */
+    }
+
+    .text-overlay a.button {
+        font-size: 0.9rem; /* Tamaño aún más reducido en pantallas muy pequeñas */
+        padding: 8px 16px; /* Menos padding en pantallas pequeñas */
+    }
+
+    .text-overlay {
+        padding: 10px; /* Menos padding en pantallas muy pequeñas */
+    }
+
+    .container-relative {
+        height: 300px; /* Reducimos la altura aún más en pantallas pequeñas */
+    }
+}
+
+.opciones {
+    background-color: #d91424; /* Color de fondo para toda la sección */
+    padding: 2rem 0; /* Añade un poco de espacio superior e inferior */
+}
+
+.titulo-opciones {
+    color: white;
+    text-align: center; 
+    margin-bottom: 40px;
+}
+
+/* Añadir separación entre las columnas si es necesario */
+.row {
+    display: flex; /* Asegúrate de que las columnas se alineen en fila */
+    justify-content: center; /* Centra las columnas */
+    gap: 2rem; /* Espacio entre las columnas */
+}
+
+.servicios {
+    text-align: center;
+    color: white;
+    padding: 20px; /* Espaciado interno */
+    border-radius: 8px; /* Esquinas redondeadas */
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo ligero para las columnas */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones para el color y zoom */
+    text-decoration: none;
+}
+
+.servicios:hover {
+    background-color: #3767a6; /* Color de fondo para toda la sección */
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
+
+/* Responsividad para los servicios */
+@media (max-width: 768px) {
+    .servicios {
+        padding: 15px; /* Menos padding en pantallas medianas */
+    }
+}

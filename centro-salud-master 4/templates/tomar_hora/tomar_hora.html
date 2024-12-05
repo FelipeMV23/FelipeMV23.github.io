@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendar Cita Médica</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    <header>
+    {% include 'navegacion/navbar.html' %}
+    </header>
+
+    <div class="container mt-3">
+        {% if messages %}
+            <div class="row">
+                <div class="col-12">
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+    <div class="container container-form">
+        <h1>Agendar Cita Médica</h1>
+        <br>
+        <br>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Fecha -->
+            <div class="mb-3">
+                <label for="id_date" class="form-label">Seleccione la Fecha:</label>
+                {{ form.date }}
+            </div>
+        
+            <!-- Especialista -->
+            <div class="mb-3" id="specialist-container">
+                <label for="id_specialist" class="form-label">Seleccione al Especialista:</label>
+                {{ form.specialist }}
+            </div>
+        
+            <!-- Hora -->
+            <div class="mb-3" id="time-container">
+                <label for="id_time" class="form-label">Seleccione la Hora:</label>
+                {{ form.time }} <button type="submit" hidden></button>
+            </div>
+        
+            <button type="submit" class="btn btn-primary">Confirmar Cita</button>
+        </form>
+        
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer>
+        {% include 'navegacion/footer.html' %}
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('id_date');
+            const timeSelect = document.getElementById('id_time');
+    
+            dateInput.addEventListener('change', function() {
+                const selectedDate = this.value;
+                const url = "{% url 'horas_disponibles' %}?date=" + selectedDate; // Generar URL dinámicamente
+    
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error al obtener las horas disponibles');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        timeSelect.innerHTML = '';  // Limpiar opciones anteriores
+                        data.times.forEach(time => {
+                            const option = new Option(time, time);
+                            timeSelect.add(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Hubo un problema con la solicitud:', error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

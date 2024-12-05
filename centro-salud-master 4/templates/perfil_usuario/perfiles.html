@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Usuario</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personalizado para el perfil -->
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+</head>
+<body>
+    <header>
+        {% include 'navegacion/navbar.html' %}
+    </header>
+    <div class="col">
+        <div class="container perfil-container mt-5 d-flex justify-content-center align-items-center">
+            <div class="col-md-8 mx-auto">
+                {% if perfiles %}
+                <div class="user-info text-center">
+                    <h3 class="titulo-perfil mb-4">Perfil de Usuario</h3>
+                    <form id="perfil-form" method="POST" action="{% url 'editar_perfil' %}">
+                        {% csrf_token %}
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                                <tr>
+                                    <th class="titulo-campo">Nombre:</th>
+                                    <td>
+                                        {% if perfiles.user %}
+                                            <span id="nombre-text">{{ perfiles.user.first_name }}</span>
+                                            <input type="text" name="first_name" value="{{ perfiles.user.first_name }}" class="form-control edit-field" id="nombre-form" style="display:none;">
+                                        {% else %}
+                                            <span>No disponible</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="titulo-campo">Apellido:</th>
+                                    <td>
+                                        {% if perfiles.user %}
+                                            <span id="apellido-text">{{ perfiles.user.last_name }}</span>
+                                            <input type="text" name="last_name" value="{{ perfiles.user.last_name }}" class="form-control edit-field" id="apellido-form" style="display:none;">
+                                        {% else %}
+                                            <span>No disponible</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="titulo-campo">Email:</th>
+                                    <td>
+                                        {% if perfiles.user %}
+                                            <span id="email-text">{{ perfiles.user.email }}</span>
+                                            <input type="email" name="email" value="{{ perfiles.user.email }}" class="form-control edit-field" id="email-form" style="display:none;">
+                                        {% else %}
+                                            <span>No disponible</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="titulo-campo">Tipo de usuario:</th>
+                                    <td>
+                                        {% if perfiles.user_type == 'patient' %} 
+                                            Paciente 
+                                        {% else %} 
+                                            Especialista 
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="titulo-campo">Rut:</th>
+                                    <td>{{ rut }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="mt-4">
+                            <button type="button" class="btn btn-primary" onclick="enableEdit()">Editar</button>
+                            <button type="submit" class="btn btn-success" style="display:none;">Guardar</button>
+                        </div>
+                    </form>
+
+                    <!-- Sección Horas Tomadas -->
+                    {% if perfiles.user_type == 'patient' %}
+                    <div class="mt-5">
+                        <h4 class="titulo-perfil mb-3">Horas Tomadas</h4>
+                        <div class="horas-list">
+                            {% if horas %}
+                                {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                <ul class="list-unstyled">
+                                    {% for hora in horas %}
+                                        <li>
+                                            {{ hora }} 
+                                            <button style="margin-left: 1rem;" type="button" class="btn btn-danger" onclick="eliminarHora({{ hora.id }})">Eliminar</button>
+                                        </li>
+                                        <br>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <span>No hay horas registradas.</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+                {% else %}
+                <p>No se encontró perfil para este usuario.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para habilitar la edición
+        function enableEdit() {
+            const fields = ['nombre', 'apellido', 'email'];
+            fields.forEach(field => {
+                document.getElementById(field + '-text').style.display = 'none';
+                document.getElementById(field + '-form').style.display = 'block';
+            });
+            document.querySelector('.btn-success').style.display = 'inline-block';
+        }
+
+        // Función para eliminar una hora
+        function eliminarHora(horaId) {
+            if (confirm('¿Estás seguro de que deseas eliminar esta hora?')) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = "{% url 'eliminar_hora' 0 %}".replace('0', horaId);
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                const csrfInput = document.createElement('input');
+                csrfInput.type = 'hidden';
+                csrfInput.name = 'csrfmiddlewaretoken';
+                csrfInput.value = csrfToken;
+                form.appendChild(csrfInput);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

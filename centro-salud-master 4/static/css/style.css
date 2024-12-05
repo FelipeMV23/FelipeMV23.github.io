@@ -1,0 +1,38 @@
+@import url('home.css');
+@import url('footer.css');
+@import url('navbar.css');
+@import url('especialistas.css');
+@import url('especialidades.css');
+@import url('perfil.css');
+
+/* Estilo general del cuerpo */
+body {
+    background-color: #ffffff;
+}
+
+/* Ajustes en pantallas pequeñas */
+@media (max-width: 767px) {
+    .navbar-nav {
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-link {
+        font-size: 0.875rem;
+    }
+}
+
+/* Ajustes en pantallas grandes */
+@media (min-width: 768px) {
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
+}
+
+h1 {
+    color: #D91424;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
